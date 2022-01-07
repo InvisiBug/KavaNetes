@@ -1,0 +1,27 @@
+name: pihole
+
+namespace: pihole
+
+deployment:
+
+  - name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - port: 53
+      - port: 53
+      - port: 67
+      - port: 80
+    volumes:
+      - name: pihole-storage
+        type: pvc
+        path: /etc/pihole
+
+service:
+  loadBalancer:
+    - name: pihole
+      selector: pihole
+      port: 80
+
+pvc:
+  - name: pihole-storage
+    storage: 500Mi
