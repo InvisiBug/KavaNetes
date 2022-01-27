@@ -36,6 +36,13 @@ spec:
         - containerPort: 5000
           name: registry
           protocol: TCP
+        tolerations:
+        - effect: NoExecute
+          operator: Exists
+        - effect: NoSchedule
+          operator: Exists
+        nodeSelector:
+          hostname: master
       volumes:
       - name: image-store
         hostPath:
