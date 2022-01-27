@@ -21,6 +21,7 @@ service:
     - name: pihole
       selector: pihole
       port: 80
+      containerPort: 80
 
 pvc:
   - name: pihole-storage
