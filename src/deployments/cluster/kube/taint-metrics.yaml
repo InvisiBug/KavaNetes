@@ -44,6 +44,8 @@ spec:
         volumeMounts:
         - mountPath: /tmp
           name: tmp-dir
+      nodeSelector:
+        kubernetes.io/hostname: master
       dnsPolicy: ClusterFirst
       priorityClassName: system-node-critical
       restartPolicy: Always
