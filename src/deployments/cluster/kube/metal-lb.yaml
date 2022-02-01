@@ -436,9 +436,6 @@ spec:
             drop:
             - all
           readOnlyRootFilesystem: true
-      nodeSelector:
-        kubernetes.io/os: linux
-        kubernetes.io/hostname: master
       securityContext:
         runAsNonRoot: true
         runAsUser: 65534
@@ -459,3 +456,5 @@ spec:
         operator: Exists
       - effect: NoSchedule
         operator: Exists
+      nodeSelector:
+        kubernetes.io/hostname: master
