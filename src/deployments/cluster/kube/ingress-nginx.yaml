@@ -391,15 +391,15 @@ spec:
             requests:
               cpu: 100m
               memory: 90Mi
-      nodeSelector:
-        kubernetes.io/os: linux
-        kubernetes.io/hostname: master
       serviceAccountName: ingress-nginx
       terminationGracePeriodSeconds: 300
       volumes:
         - name: webhook-cert
           secret:
             secretName: ingress-nginx-admission
+      nodeSelector:
+        kubernetes.io/os: linux
+        kubernetes.io/hostname: master
       tolerations:
       - key: CriticalAddonsOnly
         operator: Exists

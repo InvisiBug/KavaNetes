@@ -6108,6 +6108,14 @@ spec:
                 fieldPath: metadata.namespace
           resources:
             {}
+      nodeSelector:
+        kubernetes.io/hostname: master
+      tolerations:
+      - effect: NoExecute
+        operator: Exists
+      - effect: NoSchedule
+        operator: Exists
+
             
 
 ---
@@ -6167,7 +6175,14 @@ spec:
           resources:
             requests:
               cpu: 10m
-              memory: 32Mi
+              memory: 32M
+      nodeSelector:
+        kubernetes.io/hostname: master
+      tolerations:
+      - effect: NoExecute
+        operator: Exists
+      - effect: NoSchedule
+        operator: Exists
             
 
 ---
@@ -6226,6 +6241,13 @@ spec:
       - name: certs
         secret:
           secretName: cert-manager-webhook-tls
+      nodeSelector:
+        kubernetes.io/hostname: master
+      tolerations:
+      - effect: NoExecute
+        operator: Exists
+      - effect: NoSchedule
+        operator: Exists
 ---
 # Source: cert-manager/templates/webhook-apiservice.yaml
 apiVersion: apiregistration.k8s.io/v1beta1
