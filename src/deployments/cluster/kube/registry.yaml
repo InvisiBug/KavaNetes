@@ -36,6 +36,11 @@ spec:
         - containerPort: 5000
           name: registry
           protocol: TCP
+      volumes:
+      - name: image-store
+        hostPath:
+          path: /var/lib/registry-storage
+        #emptyDir: {}
       tolerations:
       - effect: NoExecute
         operator: Exists
@@ -43,11 +48,6 @@ spec:
         operator: Exists
       nodeSelector:
         kubernetes.io/hostname: master
-      volumes:
-      - name: image-store
-        hostPath:
-          path: /var/lib/registry-storage
-        #emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
