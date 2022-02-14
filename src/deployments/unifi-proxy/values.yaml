@@ -1,6 +1,6 @@
 name: unifi-proxy
 
-namespace: unifi-proxy
+namespace: proxies
 
 deployment:
   - name: unifi-proxy

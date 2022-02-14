@@ -1,6 +1,6 @@
 name: printer-proxy
 
-namespace: printer-proxy
+namespace: proxies
 
 deployment:
   - name: printer-proxy
@@ -8,7 +8,7 @@ deployment:
     ports:
     - port: 80
     volumes:
-      - name: nginx-settings
+      - name: printer-nginx-settings
         type: config
         path: /etc/nginx/conf.d/
 
@@ -20,7 +20,7 @@ service:
       - port: 80
 
 configmap:
-  - name: nginx-settings
+  - name: printer-nginx-settings
     file: config/proxy.conf
 
 ingress:
