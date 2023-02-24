@@ -91,8 +91,7 @@ spec:
           name: config-volume
           readOnly: true
       dnsPolicy: Default
-      nodeSelector:
-        beta.kubernetes.io/os: linux
+
       priorityClassName: system-cluster-critical
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -101,19 +100,12 @@ spec:
       serviceAccountName: coredns
       terminationGracePeriodSeconds: 30
       tolerations:
-      - key: CriticalAddonsOnly
-        operator: Exists
-      - effect: NoSchedule
-        key: node-role.kubernetes.io/control-plane
-        operator: Exists
-      - effect: NoSchedule
-        key: node-role.kubernetes.io/master
-        operator: Exists
-
       - effect: NoExecute
         operator: Exists
       - effect: NoSchedule
         operator: Exists
+      nodeSelector:
+        kubernetes.io/hostname: master
 
       volumes:
       - configMap:

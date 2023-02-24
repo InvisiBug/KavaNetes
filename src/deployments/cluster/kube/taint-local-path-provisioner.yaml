@@ -61,26 +61,19 @@ spec:
       serviceAccount: local-path-provisioner-service-account
       serviceAccountName: local-path-provisioner-service-account
       terminationGracePeriodSeconds: 30
-      tolerations:
-      - key: CriticalAddonsOnly
-        operator: Exists
-      - effect: NoSchedule
-        key: node-role.kubernetes.io/control-plane
-        operator: Exists
-      - effect: NoSchedule
-        key: node-role.kubernetes.io/master
-        operator: Exists
-
-      - effect: NoExecute
-        operator: Exists
-      - effect: NoSchedule
-        operator: Exists
-
       volumes:
       - configMap:
           defaultMode: 420
           name: local-path-config
         name: config-volume
+      tolerations:
+      - effect: NoExecute
+        operator: Exists
+      - effect: NoSchedule
+        operator: Exists
+      nodeSelector:
+        kubernetes.io/hostname: master
+
 # status:
 #   availableReplicas: 1
 #   conditions:

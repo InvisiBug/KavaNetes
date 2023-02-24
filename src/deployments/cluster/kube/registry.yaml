@@ -41,6 +41,13 @@ spec:
         hostPath:
           path: /var/lib/registry-storage
         #emptyDir: {}
+      tolerations:
+      - effect: NoExecute
+        operator: Exists
+      - effect: NoSchedule
+        operator: Exists
+      nodeSelector:
+        kubernetes.io/hostname: master
 ---
 apiVersion: v1
 kind: Service

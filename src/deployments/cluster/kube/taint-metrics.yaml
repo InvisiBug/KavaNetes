@@ -52,24 +52,17 @@ spec:
       serviceAccount: metrics-server
       serviceAccountName: metrics-server
       terminationGracePeriodSeconds: 30
+      volumes:
+      - emptyDir: {}
+        name: tmp-dir
       tolerations:
-      - key: CriticalAddonsOnly
-        operator: Exists
-      - effect: NoSchedule
-        key: node-role.kubernetes.io/control-plane
-        operator: Exists
-      - effect: NoSchedule
-        key: node-role.kubernetes.io/master
-        operator: Exists
-
       - effect: NoExecute
         operator: Exists
       - effect: NoSchedule
         operator: Exists
+      nodeSelector:
+        kubernetes.io/hostname: master
 
-      volumes:
-      - emptyDir: {}
-        name: tmp-dir
 # status:
 #   availableReplicas: 1
 #   conditions:
