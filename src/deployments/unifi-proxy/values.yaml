@@ -2,7 +2,7 @@ name: unifi-proxy
 
 namespace: proxies
 
-deployment:
+communityDeployment:
   - name: unifi-proxy
     image: nginx
     ports:
