@@ -12,15 +12,6 @@ deployment:
         type: config
         path: /etc/nginx/conf.d/
 
-  - name: liam-printer-proxy
-    image: nginx
-    ports:
-    - port: 80
-    volumes:
-      - name: printer-nginx-settings
-        type: config
-        path: /etc/nginx/conf.d/
-
 service:
   clusterIP:
     - name: printer-proxy
@@ -28,10 +19,6 @@ service:
       ports:
       - port: 80
 
-    - name: liam-printer-proxy
-      selector: liam-printer-proxy
-      ports:
-      - port: 80
 
 configmap:
   - name: printer-nginx-settings
