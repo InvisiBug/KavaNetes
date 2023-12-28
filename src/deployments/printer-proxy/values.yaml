@@ -24,18 +24,9 @@ configmap:
   - name: printer-nginx-settings
     file: config/proxy.conf
 
-  - name: liam-printer-nginx-settings
-    file: config/liamProxy.conf
-
 ingress:
   - name: printer-proxy
     selector: printer-proxy
     path: /
     port: 80
     host: printer.kavanet.io
-
-  - name: liam-printer-proxy
-    selector: liam-printer-proxy
-    path: /
-    port: 80
-    host: liam.printer.kavanet.io
