@@ -1,0 +1,32 @@
+name: argo-proxy
+
+namespace: proxies
+
+communityDeployment:
+  - name: argo-proxy
+    image: nginx
+    ports:
+    - port: 80
+    volumes:
+      - name: argo-nginx-settings
+        type: config
+        path: /etc/nginx/conf.d/
+
+service:
+  clusterIP:
+    - name: argo-proxy
+      selector: argo-proxy
+      ports:
+      - port: 80
+
+
+configmap:
+  - name: argo-nginx-settings
+    file: config/proxy.conf
+
+ingress:
+  - name: argo-proxy
+    selector: argo-proxy
+    path: /
+    port: 80
+    host: argo.kavanet.io
