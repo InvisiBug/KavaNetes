@@ -1,0 +1,32 @@
+name: zigbee-proxy
+
+namespace: proxies
+
+communityDeployment:
+  - name: zigbee-proxy
+    image: nginx
+    ports:
+    - port: 80
+    volumes:
+      - name: zigbee-nginx-settings
+        type: config
+        path: /etc/nginx/conf.d/
+
+service:
+  clusterIP:
+    - name: zigbee-proxy
+      selector: zigbee-proxy
+      ports:
+      - port: 80
+
+
+configmap:
+  - name: zigbee-nginx-settings
+    file: config/proxy.conf
+
+ingress:
+  - name: zigbee-proxy
+    selector: zigbee-proxy
+    path: /
+    port: 80
+    host: zigbee.kavanet.io
