@@ -1,0 +1,32 @@
+name: wordpress-proxy
+
+namespace: proxies
+
+communityDeployment:
+  - name: wordpress-proxy
+    image: nginx
+    ports:
+    - port: 80
+    volumes:
+      - name: wordpress-nginx-settings
+        type: config
+        path: /etc/nginx/conf.d/
+
+service:
+  clusterIP:
+    - name: wordpress-proxy
+      selector: wordpress-proxy
+      ports:
+      - port: 80
+
+
+configmap:
+  - name: wordpress-nginx-settings
+    file: config/proxy.conf
+
+ingress:
+  - name: wordpress-proxy
+    selector: wordpress-proxy
+    path: /
+    port: 80
+    host: wordpress.kavanet.io
