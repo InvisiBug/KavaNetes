@@ -29,4 +29,4 @@ ingress:
     selector: wordpress-proxy
     path: /
     port: 80
-    host: wordpress.kavanet.io
+    host: flowception.co.uk
